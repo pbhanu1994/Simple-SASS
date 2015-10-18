@@ -1,0 +1,138 @@
+h1 {
+  margin: 35px; }
+
+body {
+  background-color: #03a9f4; }
+
+.first a, .second a, .third a {
+  text-decoration: none;
+  font-size: 20px;
+  color: red; }
+.first p, .second p, .third p {
+  font-size: 40px; }
+
+.second, .third {
+  border: 8px solid green; }
+
+.circle {
+  width: 100px;
+  height: 100px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  background-color: #999;
+  border: 2px solid black; }
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 200px solid transparent;
+  border-right: 200px solid transparent;
+  border-bottom: 200px solid #999; }
+
+.facebook {
+  background: url("../img/facebook.png") no-repeat; }
+
+.twitter {
+  background: url("../img/twitter.png") no-repeat; }
+
+.linkedin {
+  background: url("../img/linkedin.png") no-repeat; }
+
+.rss {
+  background: url("../img/rss.png") no-repeat; }
+
+.one {
+  background: black; }
+
+.two {
+  background: #141414; }
+
+.three {
+  background: #1e1e1e; }
+
+.four {
+  background: #282828; }
+
+.rgba {
+  background: rgba(51, 51, 51, 0.5);
+  width: 38.19444%; }
+
+.onebuilt {
+  width: 38%; }
+
+.twobuilt {
+  width: 62%; }
+
+.functionClass {
+  color: #8c8c8c; }
+
+.functionClass2 {
+  color: #dbdbdb; }
+
+.ones {
+  background: black;
+  color: #e6e6e6; }
+
+.twos {
+  background: #141414;
+  color: #fafafa; }
+
+.threes {
+  background: white;
+  color: #1a1a1a; }
+
+.fours {
+  background: #d7d7d7;
+  color: black; }
+
+.par-1 {
+  margin-right: 10px;
+  background-color: black;
+  color: #fff; }
+
+.par-2 {
+  margin-right: 20px;
+  background-color: black;
+  color: #fff; }
+
+.par-3 {
+  margin-right: 30px;
+  background-color: black;
+  color: #fff; }
+
+.par-4 {
+  margin-right: 40px;
+  background-color: black;
+  color: #fff; }
+
+.par-1 {
+  margin-left: 10px; }
+
+.par-2 {
+  margin-left: 20px; }
+
+.par-3 {
+  margin-left: 30px; }
+
+.par-4 {
+  margin-left: 40px; }
+
+.par-1, .par-2, #harish {
+  width: 20px;
+  height: 30px;
+  background-color: #eee;
+  position: absolute;
+  z-index: 999; }
+
+.main .header {
+  width: 80%;
+  height: 100%;
+  position: absolute;
+  margin: 0 auto;
+  z-index: 999; }
+@media only screen and (max-width: 480px) {
+  .main .header {
+    width: 100%; } }
+
+/*# sourceMappingURL=style.css.map */

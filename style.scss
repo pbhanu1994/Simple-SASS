@@ -1,0 +1,210 @@
+//Variables
+$blue:#03a9f4;
+$margin:25px;
+
+h1{
+	margin:$margin+10px;
+}
+body{
+	background-color:$blue;
+}
+
+//Nested
+.first{
+	a{
+		text-decoration: none;
+		font-size: 20px;
+		color: red;
+	}
+	p{
+		font-size: 40px;
+	}
+}
+.second, .third {
+	@extend .first;
+	  border: 8px solid green;
+}
+
+//Circle
+@mixin circle($width,$color) {
+	width : $width;
+	height : $width;
+	-webkit-border-radius : $width/2;
+	-moz-border-radius : $width/2;
+	border-radius : $width/2;
+	background-color: $color;
+}
+.circle{
+	@include circle(100px,#999);
+	border: 2px solid black;
+}
+
+//Triangle
+@mixin triangle($width,$dir,$color) {
+	@if $dir == up {
+		width: 0;
+		height: 0;
+		border-left : $width solid transparent;
+		border-right : $width solid transparent;
+		border-bottom : $width solid $color;
+	} @else if $dir == down{
+		width: 0;
+		height: 0;
+		border-left : $width solid transparent;
+		border-right : $width solid transparent;
+		border-top : $width solid $color;
+	}
+}
+.triangle{
+	@include triangle(200px,up,#999);
+}
+
+//lists
+$icons:(facebook,twitter,linkedin,rss);
+@each $social in $icons {
+	.#{$social} {
+		background: url('../img/#{$social}.png') no-repeat;
+	}
+}
+
+//lists 2
+@each $p in (
+one black,
+two black+20,
+three black+30,
+four black+40
+){
+	.#{nth($p, 1)} { background:#{nth($p, 2)}; }
+}
+//here $p,1 is the 1st column i.e classes (one,two,etc)... and 
+//$p,2 is the 2nd column with the colors...
+
+
+//BUILT-IN FUNCTIONS:-
+//rgba - built-in -> rgba($color, $alpha),
+//fade-out- built-in -> fade-out($color,$alpha)
+//percentage - built-in -> percentage($value (1/5))
+//round - rounds to the nearest whole no- no decimals -> round($value)
+.rgba{
+	background: rgba(#333, 0.5);
+	width: percentage(550 / 1440);
+}
+//eg:2
+@each $n in (
+	onebuilt round(percentage(550/1440)),
+	twobuilt round(percentage(890/1440)) 
+){
+	.#{nth($n, 1)} { width:#{nth($n, 2)}; }
+}
+
+//Functions
+@function text-contrast($background,$val) {
+	@return ($background + $val);
+}
+.functionClass{
+	color:text-contrast(black + 40,100);
+}
+// Functions:2
+@function text-contrast2($background) {
+	@if lightness($background) < 50% {
+		@return lighten($background, 70%);
+	} @else {
+		@return darken($background, 70%);
+	}
+}
+//lightness : gives the lightness of the color...
+.functionClass2{
+	color: text-contrast2(black + 40);
+}
+//Functions:3
+@function text-contrasts($background) {
+	@if lightness($background) < 50% {
+		@return lighten($background, 90%);
+	} @else {
+		@return darken($background, 90%);
+	}
+}
+@each $q in (
+ones black,
+twos black + 20,
+threes white,
+fours white - 40
+){
+	.#{nth($q, 1)} { background:nth($q, 2); color:text-contrasts(nth($q,2)); }
+}
+
+//Output Styles:
+//1. Expanded ->Now in cmd.. ctrl+c and 'n' (no terminate sass)-> "sass -w style.scss:style.css --style expanded" and save the scss file and check out the css.
+//2. Compact ->Now in cmd..(no terminate sass) -> "sass -w style.scss:style.css --style compact" and save the scss file and check out the css.
+//3. Compress ->Now in cmd..(no terminate sass) -> "sass -w style.scss:style.css --style compress" and save the scss file and check out the css.
+
+//For Loops:
+//Syntax:
+//@for $i from 1 through 4 {
+//
+//}
+//<p class="par-1">lorem</p>
+//<p class="par-2">lorem</p>
+//<p class="par-3">lorem</p>
+//<p class="par-4">lorem</p>
+//
+@for $i from 1 through 4 {
+	.par-#{$i} {
+		margin-right: 10px * $i;
+		background-color: black;
+		color:#fff;
+	}
+}
+
+//While Loops:
+$i : 1;
+@while $i < 5 {
+	.par-#{$i} {
+		margin-left: 10px * $i;
+	}
+	$i : $i + 1;
+}
+
+//Live Reload
+
+//Updating sass - gem install sass in (windows cmd pmpt)
+
+//Placeholder Selectors - extending the properties through variable
+// %var_name{ }
+//for eg:
+%bhanu {
+	width: 20px;
+	height: 30px;
+	background-color: #eee;
+	position: absolute;
+	z-index: 999;
+}
+.par-1,.par-2 {
+	@extend %bhanu;
+}
+#harish{
+	@extend %bhanu;
+}
+
+//@content - Better for Media Queries in Sass, and for many other things
+@mixin phone{
+	@media only screen and (max-width: 480px){
+		@content; // Here we're dropping the content.
+	}
+}
+.main{
+	.header{
+		width: 80%;
+		height: 100%;
+		position: absolute;
+		margin: 0 auto;
+		z-index: 999;
+	}
+	@include phone{
+		.header{
+			width: 100%;
+		}
+	}
+}
+
+//Selector Functions - New in SASS 3.4..!!
